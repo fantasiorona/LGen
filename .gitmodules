@@ -1,9 +1,9 @@
 [submodule "LRender"]
 	path = LRender
-	url = https://github.com/jobtalle/LRender
+	url = https://github.com/fantasiorona/LRender
 [submodule "LParse"]
 	path = LParse
-	url = https://github.com/jobtalle/LParse
+	url = https://github.com/fantasiorona/LParse
 [submodule "glfw"]
 	path = glfw
 	url = https://github.com/glfw/glfw
