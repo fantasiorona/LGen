@@ -31,7 +31,7 @@ float TerrainValleys::sample(const float x, const float y) const {
 
 	return std::cos(LRender::Constants::PI * std::min(
 		1.0f,
-		std::max(0.0f, (1 + DEAD_ZONE) * std::sqrtf(dx * dx + dy * dy) - DEAD_ZONE))) * -0.5f + 0.5f;
+		std::max(0.0f, (1 + DEAD_ZONE) * std::sqrt(dx * dx + dy * dy) - DEAD_ZONE))) * -0.5f + 0.5f;
 }
 
 float TerrainValleys::getResolution() const {
