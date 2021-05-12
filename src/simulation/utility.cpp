@@ -1,4 +1,5 @@
 #include "utility.h"
+#include "extern/PerlinNoise.hpp"
 
 using namespace LGen;
 
@@ -14,11 +15,20 @@ double Utility::utility(const LRender::ReportAgent &report) const {
 		return -1;
 
 	return
-		getFactorSeeds(report) *
-		getFactorRules(report) *
-		getFactorStability(report) *
-		getFactorLeaves(report) *
-		getFactorExposure(report);
+		(getLight(report) * 1.0) + (getNutrition(report) * 0.3) + (getArea(report) * 0.005);
+}
+
+double Utility::getNutrition(const LRender::ReportAgent& report) const {
+	siv::PerlinNoise noise = siv::PerlinNoise(10.0);
+	return noise.noise2D((double)report.getPosition().x * 0.1f, (double)report.getPosition().z * 0.1f);
+}
+
+double Utility::getLight(const LRender::ReportAgent& report) const {
+	return getFactorExposure(report) * getFactorLeaves(report);
+}
+
+double Utility::getArea(const LRender::ReportAgent& report) const {
+	return report.getSize().getNodes();
 }
 
 double Utility::getFactorExposure(const LRender::ReportAgent &report) const {
